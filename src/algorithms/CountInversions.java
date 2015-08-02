@@ -11,7 +11,7 @@ public class CountInversions {
 	
 	public static void main(String[] args) {
 		long count = 0;
-		ArrayList<Integer> lst = new ArrayList();
+		ArrayList<Integer> lst = new ArrayList<>();
 		try{
 			lst = new CountInversions().ReadFromFile("IntegerArray.txt");
 		}catch(FileNotFoundException e){

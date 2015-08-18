@@ -25,7 +25,6 @@ public class CountInversions {
 
 	}
 	
-
 	public ArrayList<Integer> mergeSort(ArrayList<Integer> alst){
 		int len = alst.size();
 		long count = 0;

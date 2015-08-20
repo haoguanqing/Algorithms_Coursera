@@ -5,4 +5,5 @@ Saves project files of the programming questions in the course ***Algorithms: De
 - merge sort
 - count inversions
 - quick sort
+- compute SCC in a directed graph
 - ...

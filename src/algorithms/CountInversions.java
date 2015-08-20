@@ -22,7 +22,6 @@ public class CountInversions {
 			}
 			System.out.println(lst);
 		}
-
 	}
 	
 	public ArrayList<Integer> mergeSort(ArrayList<Integer> alst){

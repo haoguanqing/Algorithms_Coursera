@@ -7,11 +7,13 @@ public class UndirectedVertex {
 	final int data;
 	List<UndirectedEdge> edges;
 	int distance;
+	boolean visited;
 
 	public UndirectedVertex(int v) {
 		data = v;
 		edges = new ArrayList<>();
 		distance = 1000000;
+		visited = false;
 	}
 
 	public void setDistance(int distance) {
@@ -22,6 +24,10 @@ public class UndirectedVertex {
 		if (!edges.contains(e)){
 			edges.add(e);
 		}
+	}
+	
+	public void setVisited(){
+		visited = true;
 	}
 
 	@Override

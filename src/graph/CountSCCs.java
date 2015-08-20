@@ -66,8 +66,11 @@ public class CountSCCs {
 			}
 		}
 		Collections.sort(SCCSizes, Collections.reverseOrder());
-		System.out.println("The sizes of the SCCs are as follows: ");
-		System.out.println(SCCSizes);
+		System.out.println("The sizes of 10 largest SCCs are as follows: ");
+		for (int i=0;i<10;i++){
+			System.out.println(SCCSizes.get(i));
+		}
+		
 	}
 }
 

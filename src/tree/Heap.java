@@ -1,6 +1,7 @@
 package tree;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.NoSuchElementException;
 
@@ -10,6 +11,7 @@ import java.util.NoSuchElementException;
  *
  */
 public class Heap {
+
 	List<UndirectedVertex> vHeap;
 
 	public Heap() {
@@ -22,7 +24,6 @@ public class Heap {
 			vHeap.add(v2);
 			siftUp();
 		}else{
-
 			for (UndirectedVertex v: vHeap){
 				if (v.data==v2.data){
 					for (UndirectedEdge e: v2.edges){
@@ -33,7 +34,6 @@ public class Heap {
 				}
 			}
 		}
-
 	}
 
 	public UndirectedVertex extractMin(){
@@ -47,6 +47,18 @@ public class Heap {
 			siftDown();
 			return v;
 		}
+	}
+
+	public UndirectedVertex getVertex(int data){
+		if (!vHeap.contains(new UndirectedVertex(data))){
+			insert(new UndirectedVertex(data));
+		}
+		for (int i=0;i<vHeap.size();i++){
+			if (vHeap.get(i).data==data){
+				return vHeap.get(i);
+			}
+		}
+		throw new NoSuchElementException();
 	}
 
 	//----------private helper functions-------------
@@ -73,7 +85,27 @@ public class Heap {
 
 		UndirectedVertex v = vHeap.remove(size-1);
 		vHeap.add(0, v);
-
+		
+//		int k=0;
+//		int l = 2*k+1;
+//		while (l<size){
+//			int max = l, r=l+1;
+//			if (r<size){
+//				if (smallerThan(r, l)){
+//					if(smallerThan(r, k)){
+//						
+//					}
+//				}else if (smallerThan(l, r)){
+//					
+//				}
+//				k=max;
+//				l=2*k+1;
+//			}else{
+//				break;
+//			}
+//			
+//		}
+		
 		int i=0;
 		while ((i*2+2)<size){
 			//if there's only one child element, i.e. the last element in the heap
@@ -81,18 +113,21 @@ public class Heap {
 				if(smallerThan(2*i+1, i)){
 					swap(i, 2*i+1);
 					i = 2*i+1;
-				}
-			}
-			//normal cases
-			if(smallerThan(2*i+1, 2*i+2)){
-				if(smallerThan(2*i+1, i)){
-					swap(i, 2*i+1);
-					i = 2*i+1;
-				}
+				}else{break;}
 			}else{
-				if(smallerThan(2*i+2, i)){
-					swap(i, 2*i+2);
-					i = 2*i+2;
+				//normal cases
+				if(smallerThan(2*i+1, 2*i+2)){
+					if(smallerThan(2*i+1, i)){
+						swap(i, 2*i+1);
+						i = 2*i+1;
+					}else{break;}
+				}else if(smallerThan(2*i+2, 2*i+1)){
+					if(smallerThan(2*i+2, i)){
+						swap(i, 2*i+2);
+						i = 2*i+2;
+					}else{break;}
+				}else{
+					break;
 				}
 			}
 		}

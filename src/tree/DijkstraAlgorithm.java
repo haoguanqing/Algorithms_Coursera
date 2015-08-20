@@ -7,32 +7,32 @@ import java.util.*;
 public class DijkstraAlgorithm {
 	Heap heap;
 	private boolean DEBUG;
+	HashMap<Integer, UndirectedVertex> vertexDataMap;
 
 	public DijkstraAlgorithm(String fileName) {
 		heap = new Heap();
-		DEBUG = true;
+		DEBUG = false;
+		vertexDataMap = new HashMap<>();
 		readFromFile(fileName);
 	}
 	
-	public int findShortestPath(int target){
-		System.out.println("Trying to find the shortest path to "+target+" ...");
-		UndirectedVertex v = heap.extractMin();
-		while (v.data != target){
+	public void findShortestPath(){
+		System.out.println("Trying to find the shortest paths ...");
+		while (!heap.vHeap.isEmpty()){
+			UndirectedVertex v = heap.extractMin();
+			v.setVisited();
 			for (UndirectedEdge e: v.edges){
 				int newDistance = v.distance+e.length;
-//				System.out.println(e.toString());
-//				System.out.println(newDistance);
-				if (newDistance<e.getTheOtherVertex(v.data).distance){
-					UndirectedVertex v2 = e.getTheOtherVertex(v.data);
+				UndirectedVertex v2 = getVertex(e.getEndVertexData(v.data));
+				if (!v2.visited)
+				if ((!v2.visited)&&(newDistance<v2.distance)){
 					v2.setDistance(newDistance);
 					heap.vHeap.remove(v2);
 					heap.insert(v2);
 				}
 			}
-			v = heap.extractMin();
-			System.out.println(v.data +", distance "+v.distance);
 		}
-		return v.distance;
+		System.out.println("Shortest paths successfully defined");
 	}
 
 	public void readFromFile(String fileName){
@@ -41,17 +41,16 @@ public class DijkstraAlgorithm {
 			
 			Scanner sc = new Scanner(new FileReader(fileName));
 			while(sc.hasNextLine()){
-				String[] line = sc.nextLine().trim().split(" ");
-				//String[] line = sc.nextLine().trim().split("\t");
-				UndirectedVertex source = new UndirectedVertex(Integer.parseInt(line[0]));
+				//String[] line = sc.nextLine().trim().split(" ");
+				String[] line = sc.nextLine().trim().split("\t");
+				UndirectedVertex source = getVertex(Integer.parseInt(line[0]));
 				if (source.data==1){
 					source.setDistance(0);
 				}
 				heap.insert(source);
-				System.out.println("insert source" + source);
 				for (int i=1;i<line.length;i++){
 					String[] edgeStr = line[i].split(",");
-					UndirectedVertex end = new UndirectedVertex(Integer.parseInt(edgeStr[0]));
+					UndirectedVertex end = getVertex(Integer.parseInt(edgeStr[0]));
 					int l = Integer.parseInt(edgeStr[1]);
 					addEdges(source, end, l);
 					heap.insert(end);
@@ -66,15 +65,44 @@ public class DijkstraAlgorithm {
 		}
 	}
 	
+	public UndirectedVertex getVertex(int data){
+		if (!vertexDataMap.containsKey(data)){
+			vertexDataMap.put(data, new UndirectedVertex(data));
+		}
+		return vertexDataMap.get(data);
+	}
+
 	private void addEdges(UndirectedVertex v1, UndirectedVertex v2, int length){
 		UndirectedEdge e = new UndirectedEdge(v1, v2, length);
 		v1.addEdge(e);
 		v2.addEdge(e);
 	}
 	
-	public static void main(String[] args) {
-		DijkstraAlgorithm d = new DijkstraAlgorithm("dijkstraData_test1.txt");
-		System.out.println(d.findShortestPath(4));
+	public int[] getShortestPathOf(int[] data){
+		int[] results = new int[data.length];
+		int j=0;
+		for (int i=0;i<data.length;i++){
+			results[i] = vertexDataMap.get(data[i]).distance;
+		}
+		return results;
 	}
-
+	
+	public static void printIntArray(int[] a){
+		System.out.print("[");
+		for (int i=0;i<a.length-1;i++){
+			System.out.print(a[i]+",");
+		}
+		System.out.print(a[a.length-1]+"]");
+	}
+	
+	public static void main(String[] args) {
+		DijkstraAlgorithm d = new DijkstraAlgorithm("dijkstraData.txt");
+//		DijkstraAlgorithm d = new DijkstraAlgorithm("dijkstra_test200.txt");
+//		DijkstraAlgorithm d = new DijkstraAlgorithm("dijkstra_test20000.txt");
+//		DijkstraAlgorithm d = new DijkstraAlgorithm("dijkstraData_test1.txt");
+//		DijkstraAlgorithm d2 = new DijkstraAlgorithm("dijkstraData_test2.txt");
+		d.findShortestPath();
+		printIntArray(d.getShortestPathOf(
+				new int[]{1,7,37,59,82,99,115,133,165,188,197}));
+	}
 }

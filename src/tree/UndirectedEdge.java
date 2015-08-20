@@ -12,11 +12,11 @@ public class UndirectedEdge {
 		length = l;
 	}
 	
-	public UndirectedVertex getTheOtherVertex(int data){
+	public int getEndVertexData(int data){
 		if (v1.data==data){
-			return v2;
+			return v2.data;
 		}else if (v2.data==data){
-			return v1;
+			return v1.data;
 		}else{
 			throw new NoSuchElementException();
 		}

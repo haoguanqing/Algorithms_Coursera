@@ -1,0 +1,5 @@
+dijkstra_test200.txt
+The distances from vertex 1 to 7,37,59,82,99,115,133,165,188,197 are: 4758,4132,3900,1827,3700,3532,3299,3062,1501,4255 
+
+dijkstra_test20000.txt
+The distances from vertex 1 to 7,37,59,82,99,115,133,165,188,197 are: 4229,4691,3939,3063,4373,4331,3666,3284,3899,4392 The total distance from vertex 1 to all other vertices sums up to: 78599188

@@ -11,10 +11,12 @@ public class QuickSort {
 		int[] lst = new int[10000];
 		int[] lst2 = new int[10000];
 		int[] lst3 = new int[10000];
+		int[] lst4 = new int[10000];
 		try{
 			lst = ReadFromFile("QuickSort.txt");
 			lst2 = ReadFromFile("QuickSort.txt");
 			lst3 = ReadFromFile("QuickSort.txt");
+			lst4 = ReadFromFile("Median_test10000.txt");
 		}catch(FileNotFoundException e){
 			System.out.println("File not found!!!!!");
 		}finally{
@@ -29,6 +31,9 @@ public class QuickSort {
 			quickSortMedian(lst3);
 			System.out.print("quickSortMedian - ");
 			getComparison();
+			
+			quickSortMedian(lst4);
+			System.out.print("quickSortMedian - " + getMedian(lst4, 0, lst4.length-1));
 		}
 		
 	}

@@ -1,0 +1,12 @@
+"test10.txt"  = 4629
+"test100.txt" = 6138
+"test1000.txt" = 8687
+"test10000.txt" = 6283
+
+test10.txt"  = -5371
+"test100.txt" = 6138
+"test1000.txt" = 8687
+"test10000.txt" = -3717
+
+
+"test20.txt" = 8525

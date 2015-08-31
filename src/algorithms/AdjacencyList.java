@@ -68,8 +68,6 @@ public class AdjacencyList {
 		if (verticesList.size()!=2){
 			return 0;
 		}else{
-//			System.out.println(verticesList);
-//			System.out.println(edgesList);
 			return edgesList.get(0).size();
 		}
 	}

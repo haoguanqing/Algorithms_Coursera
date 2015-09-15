@@ -1,4 +1,4 @@
-package algorithms;
+package leetcode;
 
 import java.lang.reflect.Constructor;
 

@@ -1,4 +1,4 @@
-package algorithms;
+package leetcode;
 
 public class IsPowerOfTwo {
 

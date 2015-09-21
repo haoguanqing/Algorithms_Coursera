@@ -1,14 +1,12 @@
 package leetcode;
 
-import java.lang.reflect.Constructor;
-
 public class IsPalindrome {
 	
 	public IsPalindrome(){
 		
 	}
 
-	public static boolean IsPalindrome(int x) {
+	public static boolean isPalindrome(int x) {
         if (x<0){
             return false;
         }
@@ -35,7 +33,7 @@ public class IsPalindrome {
     }
 	
 	public static void main(String[] args) {
-		System.out.println(IsPalindrome(1001));
+		System.out.println(isPalindrome(1001));
 	}
 
 }

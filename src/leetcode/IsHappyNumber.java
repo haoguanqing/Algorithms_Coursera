@@ -25,9 +25,8 @@ public class IsHappyNumber {
 		for (int i=0;i<10;i++){
 			boolean b = new IsHappyNumber().isHappy(i);
 			Z.printf(i+", "+b+"\n");
+			
 		}
-		
-
 	}
 	
 }

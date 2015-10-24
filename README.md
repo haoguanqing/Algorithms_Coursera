@@ -6,4 +6,4 @@ Saves project files of the programming questions in the course ***Algorithms: De
 - count inversions
 - quick sort
 - compute SCC in a directed graph
-- ...
+- count minimum cuts

@@ -5,5 +5,7 @@ Saves project files of the programming questions in the course ***Algorithms: De
 - merge sort
 - count inversions
 - quick sort
-- compute SCC in a directed graph
-- count minimum cuts
+- Dijkstra's algorithm - compute SCC in a directed graph
+- Karger's min cut algorithm
+- median mantainance using two heaps
+- ...

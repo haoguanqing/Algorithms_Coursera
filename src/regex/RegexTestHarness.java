@@ -13,16 +13,33 @@ import java.util.regex.Pattern;
 public class RegexTestHarness {
 
 	public static void main(String[] args) throws IOException{
-		System.out.println("Regex: [a-zA-Z]+");
+		//find all words
+		/*System.out.println("Regex: [a-zA-Z]+");
 		Pattern pattern2 = Pattern.compile("[a-zA-Z]+");
 		System.out.println("Input string: Gag12 waht 2904, ger? se-ger; guanqing@seas.upenn\n");
 		Matcher matcher2 = 
-				pattern2.matcher("Gag12 waht 2904, ger? se-ger; guanqing@seas.upenn");
+				pattern2.matcher("Gag12 waht 2904, ger? se-ger; guanqing@seas.upenn");*/
+		
+		//find quotes
+		//String regex = "\"([^\"\n]*)([?!-.])\"";
+		String regex = "\"([^\"\n]*)\"";
+		System.out.println("Regex: " + regex);
+		Pattern pattern2 = Pattern.compile(regex);
+		String input = "'Gag12 waht 2904, ger?' \"se-ger,\" as, \"awef!\"; guanqing@seas.upenn\n"
+				+ "Wahahaha! \"Silencer, \n100 int?!\"";
+		System.out.println("Input string: "+input);
+		Matcher matcher2 = pattern2.matcher(input);
+		System.out.println(matcher2.find());
+		System.out.println(matcher2.find());
+		System.out.println(matcher2.find());
+		System.out.println(matcher2.find());
+		
 
+		
 		boolean found2 = false;
 		while (matcher2.find()) {
 			String s = String.format("Found" +
-					" \"%s\" starting at " +
+					" %s starting at " +
 					"index %d and ending at index %d.",
 					matcher2.group(),
 					matcher2.start(),

@@ -13,59 +13,52 @@ import java.util.regex.Pattern;
 public class RegexTestHarness {
 
 	public static void main(String[] args) throws IOException{
-        /*Console console = System.console();
-        if (console == null) {
-            System.err.println("No console.");
-            System.exit(1);
-        }
-        while (true) {
+		System.out.println("Regex: [a-zA-Z]+");
+		Pattern pattern2 = Pattern.compile("[a-zA-Z]+");
+		System.out.println("Input string: Gag12 waht 2904, ger? se-ger; guanqing@seas.upenn\n");
+		Matcher matcher2 = 
+				pattern2.matcher("Gag12 waht 2904, ger? se-ger; guanqing@seas.upenn");
 
-            Pattern pattern = 
-            Pattern.compile(console.readLine("%nEnter your regex: "));
+		boolean found2 = false;
+		while (matcher2.find()) {
+			String s = String.format("Found" +
+					" \"%s\" starting at " +
+					"index %d and ending at index %d.",
+					matcher2.group(),
+					matcher2.start(),
+					matcher2.end());
+			System.out.println(s);
+			found2 = true;
+		}
+		if(!found2){
+			System.out.println("No match found.");
+		}
 
-            Matcher matcher = 
-            pattern.matcher(console.readLine("Enter input string to search: "));
 
-            boolean found = false;
-            while (matcher.find()) {
-                console.format("I found the text" +
-                    " \"%s\" starting at " +
-                    "index %d and ending at index %d.%n",
-                    matcher.group(),
-                    matcher.start(),
-                    matcher.end());
-                found = true;
-            }
-            if(!found){
-                console.format("No match found.%n");
-            }
-        }*/
-		
 		Scanner in = new Scanner(System.in);
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		while (true) {
-			System.out.print("Enter your regex: ");
-            Pattern pattern = 
-            		Pattern.compile(br.readLine());
-            System.out.print("Enter input string to search: ");
-            Matcher matcher = 
-            		pattern.matcher(br.readLine());
+			System.out.print("\nEnter your regex: ");
+			Pattern pattern = 
+					Pattern.compile(br.readLine());
+			System.out.print("Enter input string to search: ");
+			Matcher matcher = 
+					pattern.matcher(br.readLine());
 
-            boolean found = false;
-            while (matcher.find()) {
-                String s = String.format("I found the text" +
-                    " \"%s\" starting at " +
-                    "index %d and ending at index %d.%n",
-                    matcher.group(),
-                    matcher.start(),
-                    matcher.end());
-                System.out.println(s);
-                found = true;
-            }
-            if(!found){
-            	System.out.print("No match found.%n");
-            }
-		
+			boolean found = false;
+			while (matcher.find()) {
+				String s = String.format("I found the text" +
+						" \"%s\" starting at " +
+						"index %d and ending at index %d.%n",
+						matcher.group(),
+						matcher.start(),
+						matcher.end());
+				System.out.println(s);
+				found = true;
+			}
+			if(!found){
+				System.out.print("No match found.%n");
+			}
 		}
 	}
 }

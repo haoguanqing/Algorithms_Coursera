@@ -29,12 +29,6 @@ public class RegexTestHarness {
 				+ "Wahahaha! \"Silencer, \n100 int?!\"";
 		System.out.println("Input string: "+input);
 		Matcher matcher2 = pattern2.matcher(input);
-		System.out.println(matcher2.find());
-		System.out.println(matcher2.find());
-		System.out.println(matcher2.find());
-		System.out.println(matcher2.find());
-		
-
 		
 		boolean found2 = false;
 		while (matcher2.find()) {

@@ -2,8 +2,9 @@ package leetcode;
 
 public class IsPalindrome {
 	
-	public IsPalindrome(){
-		
+	public static void main(String[] args) {
+		System.out.println(isPalindrome(1001));
+		System.out.println(isPalindrome("A man, a plan, a canal: Panama"));
 	}
 
 	public static boolean isPalindrome(int x) {
@@ -32,8 +33,14 @@ public class IsPalindrome {
     
     }
 	
-	public static void main(String[] args) {
-		System.out.println(isPalindrome(1001));
-	}
-
+	public static boolean isPalindrome(String s) {
+        s = s.replaceAll("\\W", "");
+        s = s.toLowerCase();
+        for (int i=0;i<s.length()/2;i++){
+            if (s.charAt(i)!=s.charAt(s.length()-1-i)){
+                return false;
+            }
+        }
+        return true;
+    }
 }
